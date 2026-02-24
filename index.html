@@ -33,7 +33,7 @@
 
         .episode-section {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             width: 100vw;
             display: flex;
             align-items: center;
@@ -65,23 +65,31 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 60px 15px;
         }
 
         .content-block {
             background: var(--card-bg);
-            padding: 3.5rem;
-            border-left: 8px solid var(--asso-red);
+            padding: 2rem;
+            border-left: 6px solid var(--asso-red);
             max-width: 1000px;
+            width: 100%;
             max-height: 85vh;
             overflow-y: auto;
             border-radius: 4px;
             backdrop-filter: blur(20px);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
+        }
+
+        @media (min-width: 768px) {
+            .content-block {
+                padding: 3.5rem;
+                border-left-width: 8px;
+            }
         }
 
         /* Scrollbar styling */
@@ -97,13 +105,21 @@
         .episode-meta {
             color: var(--asso-yellow);
             font-weight: bold;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .episode-meta {
+                letter-spacing: 4px;
+                font-size: 0.85rem;
+                gap: 15px;
+            }
         }
 
         .episode-meta::after {
@@ -118,24 +134,42 @@
             top: 0;
             width: 100%;
             z-index: 100;
-            padding: 20px 50px;
+            padding: 15px 20px;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
             transition: all 0.4s ease;
         }
 
+        @media (min-width: 768px) {
+            nav {
+                padding: 20px 50px;
+            }
+        }
+
         .nav-scrolled {
             background: var(--netflix-black);
-            padding: 12px 50px;
+            padding: 10px 20px;
             border-bottom: 1px solid #333;
+        }
+
+        @media (min-width: 768px) {
+            .nav-scrolled {
+                padding: 12px 50px;
+            }
         }
 
         .progress-bar {
             height: 5px;
             background: #222;
             width: 100%;
-            margin-top: 40px;
+            margin-top: 25px;
             border-radius: 3px;
             overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .progress-bar {
+                margin-top: 40px;
+            }
         }
 
         .progress-fill {
@@ -146,31 +180,52 @@
 
         .text-body {
             color: #efefef;
-            line-height: 1.85;
-            font-size: 1.1rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .text-body {
+                line-height: 1.85;
+                font-size: 1.1rem;
+            }
         }
 
         .section-title {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
             color: white;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
-        /* Casting grid centered and full viewport */
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+                letter-spacing: -1px;
+            }
+        }
+
+        /* Casting grid responsive */
         .cast-grid {
             background: var(--netflix-black);
-            height: 100vh;
+            min-height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 80px 20px;
             position: relative;
             z-index: 20;
+        }
+
+        @media (min-width: 768px) {
+            .cast-grid {
+                padding: 40px;
+            }
         }
 
         /* Annotation as a "Producer's Note" */
@@ -178,11 +233,20 @@
             position: relative;
             background: rgba(255, 204, 0, 0.1);
             border-left: 4px solid var(--asso-yellow);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            padding: 1rem;
+            margin: 1.5rem 0;
             font-style: italic;
             color: var(--asso-yellow);
             border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .annotation-box {
+                padding: 1.5rem;
+                margin: 2rem 0;
+                font-size: 1rem;
+            }
         }
 
         .annotation-box::before {
@@ -192,26 +256,36 @@
             left: 10px;
             background: var(--asso-yellow);
             color: black;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 900;
-            padding: 2px 8px;
+            padding: 1px 6px;
             border-radius: 2px;
             font-style: normal;
         }
 
         /* Stylized Lists */
         .styled-list {
-            margin: 1.5rem 0;
+            margin: 1.2rem 0;
             list-style: none;
             padding: 0;
         }
 
         .styled-list li {
             position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            .styled-list li {
+                padding-left: 2rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                font-size: 1.1rem;
+            }
         }
 
         .styled-list li::before {
@@ -251,8 +325,8 @@
 <body>
 
     <nav id="navbar" class="flex items-center justify-between">
-        <div class="flex items-center gap-8">
-            <span class="netflix-font text-5xl text-[#d91b88] tracking-tighter">ASSO-FLIX</span>
+        <div class="flex items-center gap-4 md:gap-8">
+            <span class="netflix-font text-3xl md:text-5xl text-[#d91b88] tracking-tighter">ASSO-FLIX</span>
             <div class="hidden lg:flex gap-8 text-sm font-bold uppercase tracking-widest">
                 <a href="#hero" class="hover:text-[#d91b88] transition">Accueil</a>
                 <a href="#casting" class="hover:text-[#d91b88] transition">Casting</a>
@@ -261,7 +335,7 @@
         </div>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=asso.ausecours@gmail.com&su=Rejoindre%20la%20lutte%20ASSO%20SOLIDAIRE"
             target="_blank"
-            class="bg-[#d91b88] text-white px-8 py-3 rounded-sm font-black uppercase tracking-tighter hover:bg-opacity-90 transition inline-block hero-btn">
+            class="bg-[#d91b88] text-white px-4 py-2 md:px-8 md:py-3 rounded-sm font-black uppercase text-[10px] md:text-xs tracking-tighter hover:bg-opacity-90 transition inline-block hero-btn">
             REJOINDRE LA LUTTE
         </a>
     </nav>
@@ -274,29 +348,28 @@
         <div class="content-container">
             <div class="text-center px-4 max-w-5xl">
 
-                <h1 class="netflix-font text-7xl md:text-9xl mb-8 leading-none">QUAND LA TRANSFORMATION<br><span
+                <h1 class="netflix-font text-5xl md:text-9xl mb-4 md:mb-8 leading-none">QUAND LA TRANSFORMATION<br><span
                         class="text-[#d91b88]">RENCONTRE UN PSE</span></h1>
-                <p class="text-xl md:text-3xl font-light mb-12 text-gray-200 leading-snug max-w-4xl mx-auto italic">
+                <p
+                    class="text-lg md:text-3xl font-light mb-8 md:mb-12 text-gray-200 leading-snug max-w-4xl mx-auto italic">
                     "Octobre 2025, séisme au SCCF. Le verdict tombe : un plan social et une
-                    transformation de l'association !
+                    transformation de l'association !<br class="hidden md:block"><br class="hidden md:block">
 
                     La direction convoque une visio extraordinaire pour l’ensemble des
-                    salarié·es de l’association. <br><br>
+                    salarié·es de l’association. <br class="hidden md:block"><br class="hidden md:block">
 
                     Des rumeurs, des bruits de couloirs, des ragots laissent apercevoir un
-                    moment inédit dans la vie de l’association. Le verdict tombe : un plan social et une transformation
-                    de l’association !"
+                    moment inédit dans la vie de l’association."
                 </p>
-                <h2 class="netflix-font text-2xl tracking-[0.3em] mb-6 text-gray-400">UNE CRÉATION ORIGINALE
+                <h2 class="netflix-font text-lg md:text-2xl tracking-[0.2em] md:tracking-[0.3em] mb-6 text-gray-400">UNE
+                    CRÉATION ORIGINALE
                     ASSO-SOLIDAIRES AU SECOURS CATHOLIQUE</h2>
-                <div class="flex justify-center gap-8">
+                <div class="flex justify-center gap-4 md:gap-8">
                     <a href="#saison1"
-                        class="bg-white text-black px-14 py-5 rounded-sm font-black flex items-center gap-4 hover:bg-gray-100 transition text-xl hero-btn uppercase">
+                        class="bg-white text-black px-8 py-3 md:px-14 md:py-5 rounded-sm font-black flex items-center gap-3 md:gap-4 hover:bg-gray-100 transition text-lg hero-btn uppercase">
                         <span>▶</span> Lancer la série
                     </a>
                 </div>
-                <br>
-
             </div>
         </div>
     </section>
@@ -305,62 +378,67 @@
     <section id="casting" class="cast-grid">
         <div class="max-w-7xl w-full flex flex-col items-center">
             <h3
-                class="netflix-font text-5xl mb-16 tracking-wider border-b border-gray-900 pb-6 uppercase w-full text-center">
+                class="netflix-font text-3xl md:text-5xl mb-8 md:mb-16 tracking-wider border-b border-gray-900 pb-4 md:pb-6 uppercase w-full text-center">
                 Casting Principal</h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 w-full">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-10 w-full">
                 <div class="cast-card">
                     <div
-                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/melanie.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-xl uppercase leading-tight">Mélanie Cagniart</p>
-                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH du SC</p>
+                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Mélanie Cagniart</p>
+                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH du SC</p>
                 </div>
                 <div class="cast-card">
                     <div
-                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/isabelle.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-xl uppercase leading-tight">Isabelle Lambret</p>
-                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH adjointe</p>
+                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Isabelle Lambret</p>
+                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH adjointe
+                    </p>
                 </div>
                 <div class="cast-card">
                     <div
-                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/adelaide.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-xl uppercase leading-tight">Adélaïde Bertrand</p>
-                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">Déléguée générale</p>
+                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Adélaïde Bertrand</p>
+                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">Déléguée
+                        générale</p>
                 </div>
                 <div class="cast-card">
                     <div
-                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/didier.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-xl uppercase leading-tight">Didier Duriez</p>
-                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">Président</p>
+                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Didier Duriez</p>
+                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">Président</p>
                 </div>
                 <div class="cast-card">
                     <div
-                        class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-6 flex flex-col items-center justify-center p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
-                        <span class="netflix-font text-4xl leading-none">ÉLU·ES CSE</span>
-                        <span class="text-[10px] mt-6 font-bold tracking-[0.2em]">8 ASSO • 6 CFDT • 1 CFTC • 1
+                        class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-3 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                        <span class="netflix-font text-xl md:text-4xl leading-none">ÉLU·ES CSE</span>
+                        <span
+                            class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-[0.1em] md:tracking-[0.2em]">8
+                            ASSO • 6 CFDT • 1 CFTC • 1
                             CGC</span>
                     </div>
-                    <p class="font-black text-xl uppercase leading-tight">Le CSE</p>
+                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Le CSE</p>
                 </div>
                 <div class="cast-card">
                     <div
-                        class="aspect-[2/3] bg-gray-800 rounded-sm mb-6 flex flex-col items-center justify-center p-6 text-center shadow-2xl border border-gray-700 grayscale hover:grayscale-0 transition duration-700">
-                        <span class="netflix-font text-4xl leading-none text-[#d91b88]">LES NÉGOS</span>
-                        <span class="text-[10px] mt-6 font-bold tracking-[0.2em] text-gray-400">Toutes
+                        class="aspect-[2/3] bg-gray-800 rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-3 md:p-6 text-center shadow-2xl border border-gray-700 grayscale hover:grayscale-0 transition duration-700">
+                        <span class="netflix-font text-xl md:text-4xl leading-none text-[#d91b88]">LES NÉGOS</span>
+                        <span
+                            class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-[0.1em] md:tracking-[0.2em] text-gray-400">Toutes
                             Organisations</span>
                     </div>
-                    <p class="font-black text-xl uppercase leading-tight">Négociateurs</p>
+                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Négociateurs</p>
                 </div>
             </div>
         </div>
@@ -385,7 +463,7 @@
                                 Cagnart</span>.</p>
 
                         <p>Iels parlent réorganisation, transformation, agilité, sobriété pour terminer par un nombre de
-                            postes supprimés... <strong class="text-3xl text-[#d91b88]">130 !!</strong></p>
+                            postes supprimés... <strong class="text-xl md:text-3xl text-[#d91b88]">130 !!</strong></p>
 
                         <ul class="styled-list">
                             <li>La prise de parole des participantes est <strong>bloquée</strong>.</li>
@@ -425,29 +503,36 @@
                             Les élu-es ont eu accès à la documentation monumentale de la démarche : 3 documents légaux
                             qui vont rythmer leurs nuits.</p>
 
-                        <div class="grid md:grid-cols-3 gap-4 my-8">
-                            <div class="p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
-                                <p class="text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 1 (PSE)</p>
-                                <p class="text-2xl font-black">168 <span class="text-xs font-normal">PAGES</span></p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 my-6 md:my-8">
+                            <div class="p-3 md:p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
+                                <p class="text-[10px] md:text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 1 (PSE)
+                                </p>
+                                <p class="text-xl md:text-2xl font-black">168 <span
+                                        class="text-xs font-normal">PAGES</span></p>
                             </div>
-                            <div class="p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
-                                <p class="text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 2 (Transformation)</p>
-                                <p class="text-2xl font-black">143 <span class="text-xs font-normal">PAGES</span></p>
+                            <div class="p-3 md:p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
+                                <p class="text-[10px] md:text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 2
+                                    (Transformation)</p>
+                                <p class="text-xl md:text-2xl font-black">143 <span
+                                        class="text-xs font-normal">PAGES</span></p>
                             </div>
-                            <div class="p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
-                                <p class="text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 4 (Santé)</p>
-                                <p class="text-2xl font-black">131 <span class="text-xs font-normal">PAGES</span></p>
+                            <div class="p-3 md:p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
+                                <p class="text-[10px] md:text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 4
+                                    (Santé)</p>
+                                <p class="text-xl md:text-2xl font-black">131 <span
+                                        class="text-xs font-normal">PAGES</span></p>
                             </div>
                         </div>
 
                         <p>Voilà les élu-es occupé-es pour un bon moment ! Elles arrivent en CSE avec de nombreuses
-                            questions sur le déroulement de cette période. <strong>Adélaïde Bertrand</strong> reprend
+                            questions. <strong>Adélaïde Bertrand</strong> reprend
                             les éléments du webinaire pour détailler les raisons économiques du PSE.</p>
 
                         <p class="italic">S'en suive beaucoup de questions des élues qui ne semblent pas décidées à
-                            laisser couler la présentation sans <strong>précisions et détails utiles</strong>.</p>
+                            laisser couler la présentation sans <strong>précisions</strong>.</p>
 
-                        <p class="text-gray-500 text-xs mt-10 uppercase tracking-widest border-t border-white/10 pt-4">
+                        <p
+                            class="text-gray-500 text-[10px] md:text-xs mt-6 md:mt-10 uppercase tracking-widest border-t border-white/10 pt-4">
                             Consulter le PV complet sur <a href="#" class="text-[#d91b88] underline">ISIDOR</a></p>
                     </div>
                     <div class="progress-bar">
@@ -471,9 +556,10 @@
                             <strong>négociations</strong> en parallèle du CSE. Le défi est absurde :
                         </p>
 
-                        <p class="text-2xl md:text-4xl font-black text-center my-10 leading-none">
+                        <p class="text-xl md:text-4xl font-black text-center my-6 md:my-10 leading-none">
                             <span class="text-[#d91b88]">3 MOIS</span> POUR NÉGOCIER<br>
-                            <span class="text-gray-500 text-lg font-bold">UN PROJET PRÉPARÉ DEPUIS 2 ANS</span>
+                            <span class="text-gray-500 text-xs md:text-lg font-bold">UN PROJET PRÉPARÉ DEPUIS 2
+                                ANS</span>
                         </p>
 
                         <p>Travailler sur le <strong>Livre 1</strong> pendant que le CSE étudie le <strong>Livre
@@ -484,7 +570,7 @@
                             "C'est un fait, pas une blague !"
                         </div>
 
-                        <p>Pas de compte-rendu précis diffusable. La direction estime que ce n'est pas utile : elle
+                        <p>La direction estime qu'un PV n'est pas utile : elle
                             utilise un <strong>PowerPoint</strong> (et oui ça existe encore) pour présenter les ordres
                             du jour et un relevé de décisions rédigé de manière <strong>unilatérale</strong>.</p>
                     </div>
@@ -511,7 +597,7 @@
                         </p>
 
                         <p
-                            class="text-3xl md:text-5xl font-black text-[#d91b88] italic text-center my-12 tracking-tighter">
+                            class="text-xl md:text-5xl font-black text-[#d91b88] italic text-center my-8 md:my-12 tracking-tighter">
                             "ON ENTEND. ON PREND BONNE NOTE ET ON REVIENT VERS VOUS."
                         </p>
 
@@ -520,7 +606,7 @@
                         </div>
 
                         <p>On a quand même réussi à aborder un sujet du Livre 1 sur les <strong>périmètres
-                                géographiques</strong>. Les questions de compréhension se multiplient devant des
+                                géographiques</strong>. Les questions se multiplient devant des
                             explications parfois floues.</p>
                     </div>
                     <div class="progress-bar">
@@ -541,12 +627,11 @@
                     <h2 class="section-title">LE PARADOXE OASYS</h2>
                     <div class="text-body">
                         <p>Négociations et CSE extraordinaire la même semaine : le suspense est total. On nous présente
-                            l'<strong>IAPR</strong>, un service de psychologues accessible 24h/24 pour accompagner les
-                            salarié·es.</p>
+                            l'<strong>IAPR</strong>, un service de psychologues accessible 24h/24.</p>
 
                         <p>Le rebondissement ? Les élu·es apprennent que cette structure fait partie du groupe... <span
                                 class="highlight">OASYS</span> ! </p>
-                        <p>Oui, celui-là même qui a un cabinet de conseil et qui a <strong>préparé la transformation et
+                        <p>Oui, celui-là même qui a <strong>préparé la transformation et
                                 le PSE</strong> avec notre direction !</p>
 
                         <div class="annotation-box">
@@ -556,11 +641,10 @@
 
                         <p>Vient ensuite la séquence sur la <strong>coordination des régions</strong> présentée par
                             <span class="highlight text-white">Jean-Philippe Rouxel</span> : suppression des postes de
-                            coordinateur-trices d'animation. Inquiétudes massives sur la surcharge de travail et la
-                            fragilisation du réseau bénévole.
+                            coordinateur-trices d'animation. Inquiétudes massives sur la surcharge de travail.
                         </p>
 
-                        <p class="italic text-[#d91b88] font-bold mt-6">"Paroles, paroles, paroles, toujours des
+                        <p class="italic text-[#d91b88] font-bold mt-4 md:mt-6">"Paroles, paroles, paroles, toujours des
                             paroles..." (Réf. Dalida)</p>
                     </div>
                     <div class="progress-bar">
@@ -596,7 +680,7 @@
                         </div>
 
                         <p
-                            class="mt-16 text-center text-[#ffcc00] font-black tracking-[0.4em] text-3xl netflix-font uppercase bg-black/40 py-4 border-y border-[#ffcc00]/20">
+                            class="mt-10 md:mt-16 text-center text-[#ffcc00] font-black tracking-[0.2em] md:tracking-[0.4em] text-xl md:text-3xl netflix-font uppercase bg-black/40 py-3 md:py-4 border-y border-[#ffcc00]/20">
                             Suite de la saison dans quelques semaines !
                         </p>
                     </div>
@@ -610,19 +694,21 @@
     </div>
 
     <!-- PIED DE PAGE -->
-    <footer class="bg-black py-24 px-12 border-t border-gray-900 relative z-20 text-center">
+    <footer class="bg-black py-16 md:py-24 px-8 md:px-12 border-t border-gray-900 relative z-20 text-center">
         <div class="max-w-4xl mx-auto">
-            <div class="netflix-font text-6xl text-[#d91b88] mb-10 tracking-tighter">ASSO-FLIX</div>
+            <div class="netflix-font text-4xl md:text-6xl text-[#d91b88] mb-8 md:mb-10 tracking-tighter">ASSO-FLIX</div>
             <div
-                class="flex flex-wrap justify-center gap-12 text-gray-500 text-sm font-bold mb-16 uppercase tracking-widest">
-                <a href="#" class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Asso Au Secours</a>
+                class="flex flex-wrap justify-center gap-6 md:gap-12 text-gray-500 text-[10px] md:text-sm font-bold mb-12 md:mb-16 uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Asso
+                    Au Secours</a>
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=asso.ausecours@gmail.com&su=Rejoindre%20la%20lutte%20ASSO%20SOLIDAIRE"
-                target="_blank"
-                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Contact Asso</a>
-                <a href="#"
-                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">INFOS PSE</a>
+                    target="_blank"
+                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Contact
+                    Asso</a>
+                <a href="#" class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">INFOS
+                    PSE</a>
             </div>
-            <p class="text-gray-700 text-xs uppercase tracking-[0.3em] font-light">
+            <p class="text-gray-700 text-[8px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] font-light">
                 © 2026 ASSO-Solidaires Production. Une création originale pour le SCCF.<br>
                 <span class="mt-2 block">Pas de droits réservés, tout pour la lutte.</span>
             </p>
