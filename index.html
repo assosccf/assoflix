@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSO-FLIX | Quand la transformation rencontre un PSE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --asso-red: #d91b88;
+            --asso-yellow: #ffcc00;
+            --netflix-black: #141414;
+            --card-bg: rgba(0, 0, 0, 0.92);
+        }
+
+        body,
+        html {
+            background-color: var(--netflix-black);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .netflix-font {
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        .episode-section {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #222;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 1;
+            filter: brightness(0.15) saturate(1.2);
+        }
+
+        @media (max-width: 1024px) {
+            .parallax-bg {
+                background-attachment: scroll;
+            }
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .content-block {
+            background: var(--card-bg);
+            padding: 3.5rem;
+            border-left: 8px solid var(--asso-red);
+            max-width: 1000px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 4px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
+        }
+
+        /* Scrollbar styling */
+        .content-block::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .content-block::-webkit-scrollbar-thumb {
+            background: var(--asso-red);
+            border-radius: 10px;
+        }
+
+        .episode-meta {
+            color: var(--asso-yellow);
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .episode-meta::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: rgba(255, 204, 0, 0.3);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 50px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
+            transition: all 0.4s ease;
+        }
+
+        .nav-scrolled {
+            background: var(--netflix-black);
+            padding: 12px 50px;
+            border-bottom: 1px solid #333;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: #222;
+            width: 100%;
+            margin-top: 40px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--asso-red), #ff00ea);
+            box-shadow: 0 0 10px var(--asso-red);
+        }
+
+        .text-body {
+            color: #efefef;
+            line-height: 1.85;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Casting grid centered and full viewport */
+        .cast-grid {
+            background: var(--netflix-black);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Annotation as a "Producer's Note" */
+        .annotation-box {
+            position: relative;
+            background: rgba(255, 204, 0, 0.1);
+            border-left: 4px solid var(--asso-yellow);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--asso-yellow);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .annotation-box::before {
+            content: "NOTE DES AUTEURS";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--asso-yellow);
+            color: black;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-style: normal;
+        }
+
+        /* Stylized Lists */
+        .styled-list {
+            margin: 1.5rem 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .styled-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--asso-red);
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(transparent 70%, rgba(217, 27, 136, 0.3) 0%);
+        }
+
+        strong {
+            color: white;
+            font-weight: 700;
+        }
+
+        .hero-btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(217, 27, 136, 0.4);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar" class="flex items-center justify-between">
+        <div class="flex items-center gap-8">
+            <span class="netflix-font text-5xl text-[#d91b88] tracking-tighter">ASSO-FLIX</span>
+            <div class="hidden lg:flex gap-8 text-sm font-bold uppercase tracking-widest">
+                <a href="#hero" class="hover:text-[#d91b88] transition">Accueil</a>
+                <a href="#casting" class="hover:text-[#d91b88] transition">Casting</a>
+                <a href="#saison1" class="hover:text-[#d91b88] transition text-[#d91b88]">Saison 1</a>
+            </div>
+        </div>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=asso.ausecours@gmail.com&su=Rejoindre%20la%20lutte%20ASSO%20SOLIDAIRE"
+            target="_blank"
+            class="bg-[#d91b88] text-white px-8 py-3 rounded-sm font-black uppercase tracking-tighter hover:bg-opacity-90 transition inline-block hero-btn">
+            REJOINDRE LA LUTTE
+        </a>
+    </nav>
+
+    <!-- SECTION HERO -->
+    <section id="hero" class="episode-section">
+        <div class="parallax-bg"
+            style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070');">
+        </div>
+        <div class="content-container">
+            <div class="text-center px-4 max-w-5xl">
+
+                <h1 class="netflix-font text-7xl md:text-9xl mb-8 leading-none">QUAND LA TRANSFORMATION<br><span
+                        class="text-[#d91b88]">RENCONTRE UN PSE</span></h1>
+                <p class="text-xl md:text-3xl font-light mb-12 text-gray-200 leading-snug max-w-4xl mx-auto italic">
+                    "Octobre 2025, séisme au SCCF. Le verdict tombe : un plan social et une
+                    transformation de l'association !
+
+                    La direction convoque une visio extraordinaire pour l’ensemble des
+                    salarié·es de l’association. <br><br>
+
+                    Des rumeurs, des bruits de couloirs, des ragots laissent apercevoir un
+                    moment inédit dans la vie de l’association. Le verdict tombe : un plan social et une transformation
+                    de l’association !"
+                </p>
+                <h2 class="netflix-font text-2xl tracking-[0.3em] mb-6 text-gray-400">UNE CRÉATION ORIGINALE
+                    ASSO-SOLIDAIRES AU SECOURS CATHOLIQUE</h2>
+                <div class="flex justify-center gap-8">
+                    <a href="#saison1"
+                        class="bg-white text-black px-14 py-5 rounded-sm font-black flex items-center gap-4 hover:bg-gray-100 transition text-xl hero-btn uppercase">
+                        <span>▶</span> Lancer la série
+                    </a>
+                </div>
+                <br>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CASTING SECTION -->
+    <section id="casting" class="cast-grid">
+        <div class="max-w-7xl w-full flex flex-col items-center">
+            <h3
+                class="netflix-font text-5xl mb-16 tracking-wider border-b border-gray-900 pb-6 uppercase w-full text-center">
+                Casting Principal</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 w-full">
+                <div class="cast-card">
+                    <div
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        <img src="./img/melanie.png"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                    <p class="font-black text-xl uppercase leading-tight">Mélanie Cagniart</p>
+                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH du SC</p>
+                </div>
+                <div class="cast-card">
+                    <div
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        <img src="./img/isabelle.png"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                    <p class="font-black text-xl uppercase leading-tight">Isabelle Lambret</p>
+                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH adjointe</p>
+                </div>
+                <div class="cast-card">
+                    <div
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        <img src="./img/adelaide.png"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                    <p class="font-black text-xl uppercase leading-tight">Adélaïde Bertrand</p>
+                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">Déléguée générale</p>
+                </div>
+                <div class="cast-card">
+                    <div
+                        class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
+                        <img src="./img/didier.png"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                    <p class="font-black text-xl uppercase leading-tight">Didier Duriez</p>
+                    <p class="text-xs text-[#d91b88] font-bold uppercase tracking-widest">Président</p>
+                </div>
+                <div class="cast-card">
+                    <div
+                        class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-6 flex flex-col items-center justify-center p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                        <span class="netflix-font text-4xl leading-none">ÉLU·ES CSE</span>
+                        <span class="text-[10px] mt-6 font-bold tracking-[0.2em]">8 ASSO • 6 CFDT • 1 CFTC • 1
+                            CGC</span>
+                    </div>
+                    <p class="font-black text-xl uppercase leading-tight">Le CSE</p>
+                </div>
+                <div class="cast-card">
+                    <div
+                        class="aspect-[2/3] bg-gray-800 rounded-sm mb-6 flex flex-col items-center justify-center p-6 text-center shadow-2xl border border-gray-700 grayscale hover:grayscale-0 transition duration-700">
+                        <span class="netflix-font text-4xl leading-none text-[#d91b88]">LES NÉGOS</span>
+                        <span class="text-[10px] mt-6 font-bold tracking-[0.2em] text-gray-400">Toutes
+                            Organisations</span>
+                    </div>
+                    <p class="font-black text-xl uppercase leading-tight">Négociateurs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÉPISODES -->
+    <div id="saison1">
+
+        <!-- Épisode 0 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E00 • Jeudi 9 oct. 2025</span>
+                    <h2 class="section-title">LE CHOC DES ÉCRANS NOIRS</h2>
+                    <div class="text-body">
+                        <p>Les salariées du SCCF se connectent au webinaire organisé par la gouvernance de
+                            l'association. À l'écran, 3 visages : <span class="highlight">Didier Duriez</span>, <span
+                                class="highlight">Adélaïde Bertrand</span>, <span class="highlight">Mélanie
+                                Cagnart</span>.</p>
+
+                        <p>Iels parlent réorganisation, transformation, agilité, sobriété pour terminer par un nombre de
+                            postes supprimés... <strong class="text-3xl text-[#d91b88]">130 !!</strong></p>
+
+                        <ul class="styled-list">
+                            <li>La prise de parole des participantes est <strong>bloquée</strong>.</li>
+                            <li>Seul le fil de discussion de la visio est ouvert : des questions et remarques en rafale.
+                            </li>
+                            <li>Des réponses ?? <strong>Très peu !</strong></li>
+                        </ul>
+
+                        <p>C'est parti pour une démarche d'information consultation de 3 mois avec le
+                            <strong>CSE</strong> et de négociations avec les organisations syndicales représentatives
+                            (ASSO-Solidaire, CFDT, CFTC et CFE-CGC).
+                        </p>
+
+                        <div class="annotation-box">
+                            "Et d'un coup, plus personne à l'écran. Déconnexion des 3 protagonistes sous les regards
+                            interloqués des salarié-es."
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 8%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 1 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E01 • Semaine 42</span>
+                    <h2 class="section-title">L'ATTAQUE DES LIVRES DE 500 PAGES</h2>
+                    <div class="text-body">
+                        <p>Le coup d'envoi des réunions est lancé avec le premier <strong>CSE extraordinaire</strong>.
+                            Les élu-es ont eu accès à la documentation monumentale de la démarche : 3 documents légaux
+                            qui vont rythmer leurs nuits.</p>
+
+                        <div class="grid md:grid-cols-3 gap-4 my-8">
+                            <div class="p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
+                                <p class="text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 1 (PSE)</p>
+                                <p class="text-2xl font-black">168 <span class="text-xs font-normal">PAGES</span></p>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
+                                <p class="text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 2 (Transformation)</p>
+                                <p class="text-2xl font-black">143 <span class="text-xs font-normal">PAGES</span></p>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
+                                <p class="text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 4 (Santé)</p>
+                                <p class="text-2xl font-black">131 <span class="text-xs font-normal">PAGES</span></p>
+                            </div>
+                        </div>
+
+                        <p>Voilà les élu-es occupé-es pour un bon moment ! Elles arrivent en CSE avec de nombreuses
+                            questions sur le déroulement de cette période. <strong>Adélaïde Bertrand</strong> reprend
+                            les éléments du webinaire pour détailler les raisons économiques du PSE.</p>
+
+                        <p class="italic">S'en suive beaucoup de questions des élues qui ne semblent pas décidées à
+                            laisser couler la présentation sans <strong>précisions et détails utiles</strong>.</p>
+
+                        <p class="text-gray-500 text-xs mt-10 uppercase tracking-widest border-t border-white/10 pt-4">
+                            Consulter le PV complet sur <a href="#" class="text-[#d91b88] underline">ISIDOR</a></p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 18%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 2 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E02 • Semaine 43</span>
+                    <h2 class="section-title">LE SPRINT CONTRE-NATURE</h2>
+                    <div class="text-body">
+                        <p>Ça va vite, très vite : suspense, rebondissements, stress. Le 22 octobre 2025, lancement des
+                            <strong>négociations</strong> en parallèle du CSE. Le défi est absurde :
+                        </p>
+
+                        <p class="text-2xl md:text-4xl font-black text-center my-10 leading-none">
+                            <span class="text-[#d91b88]">3 MOIS</span> POUR NÉGOCIER<br>
+                            <span class="text-gray-500 text-lg font-bold">UN PROJET PRÉPARÉ DEPUIS 2 ANS</span>
+                        </p>
+
+                        <p>Travailler sur le <strong>Livre 1</strong> pendant que le CSE étudie le <strong>Livre
+                                2</strong>. Premier combat : le calendrier. Comment demander une appropriation sérieuse
+                            dans ces délais ?</p>
+
+                        <div class="annotation-box">
+                            "C'est un fait, pas une blague !"
+                        </div>
+
+                        <p>Pas de compte-rendu précis diffusable. La direction estime que ce n'est pas utile : elle
+                            utilise un <strong>PowerPoint</strong> (et oui ça existe encore) pour présenter les ordres
+                            du jour et un relevé de décisions rédigé de manière <strong>unilatérale</strong>.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 3 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E03 • Semaine 44</span>
+                    <h2 class="section-title">L'INLASSABLE DISQUE RAYÉ</h2>
+                    <div class="text-body">
+                        <p>Nouvelle rencontre des négociateur-ices. Les premières sessions étaient dédiées à la
+                            <strong>forme</strong> : calendrier, moyens, accès aux documents. Une réponse récurrente de
+                            la direction résonne dans la salle :
+                        </p>
+
+                        <p
+                            class="text-3xl md:text-5xl font-black text-[#d91b88] italic text-center my-12 tracking-tighter">
+                            "ON ENTEND. ON PREND BONNE NOTE ET ON REVIENT VERS VOUS."
+                        </p>
+
+                        <div class="annotation-box">
+                            Et oui ça peut durer longtemps !
+                        </div>
+
+                        <p>On a quand même réussi à aborder un sujet du Livre 1 sur les <strong>périmètres
+                                géographiques</strong>. Les questions de compréhension se multiplient devant des
+                            explications parfois floues.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 42%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 9 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1454165833762-01d012499d31?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E09 • Semaine 50</span>
+                    <h2 class="section-title">LE PARADOXE OASYS</h2>
+                    <div class="text-body">
+                        <p>Négociations et CSE extraordinaire la même semaine : le suspense est total. On nous présente
+                            l'<strong>IAPR</strong>, un service de psychologues accessible 24h/24 pour accompagner les
+                            salarié·es.</p>
+
+                        <p>Le rebondissement ? Les élu·es apprennent que cette structure fait partie du groupe... <span
+                                class="highlight">OASYS</span> ! </p>
+                        <p>Oui, celui-là même qui a un cabinet de conseil et qui a <strong>préparé la transformation et
+                                le PSE</strong> avec notre direction !</p>
+
+                        <div class="annotation-box">
+                            "Rassurez-vous, c'est le même groupe mais rien à voir évidemment, l'IAPR est indépendant
+                            bien sûr..." (ton sarcastique).
+                        </div>
+
+                        <p>Vient ensuite la séquence sur la <strong>coordination des régions</strong> présentée par
+                            <span class="highlight text-white">Jean-Philippe Rouxel</span> : suppression des postes de
+                            coordinateur-trices d'animation. Inquiétudes massives sur la surcharge de travail et la
+                            fragilisation du réseau bénévole.
+                        </p>
+
+                        <p class="italic text-[#d91b88] font-bold mt-6">"Paroles, paroles, paroles, toujours des
+                            paroles..." (Réf. Dalida)</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 10 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2084');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E10 • Semaine 51</span>
+                    <h2 class="section-title">LA BOUSSOLE EN BLABLA</h2>
+                    <div class="text-body">
+                        <p>On termine l'année par un nouvel acronyme : le <strong>PIC</strong> (Point Information
+                            Conseil). Ce dispositif sous-traité est géré par <span class="highlight">Randstad /
+                                RiseSmart</span>.</p>
+
+                        <p>On nous présente un cabinet "d'artisans" dont :</p>
+                        <ul class="styled-list">
+                            <li>L'humain représente la <strong>boussole</strong>.</li>
+                            <li>L'adaptation se fait <strong>sur mesure</strong>.</li>
+                            <li>La culture est centrée sur la <strong>prévention des risques</strong>.</li>
+                        </ul>
+
+                        <div class="annotation-box">
+                            "Résumé des 9 lignes précédentes : BLABLA COMMERCIAL !"
+                        </div>
+
+                        <p
+                            class="mt-16 text-center text-[#ffcc00] font-black tracking-[0.4em] text-3xl netflix-font uppercase bg-black/40 py-4 border-y border-[#ffcc00]/20">
+                            Suite de la saison dans quelques semaines !
+                        </p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- PIED DE PAGE -->
+    <footer class="bg-black py-24 px-12 border-t border-gray-900 relative z-20 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="netflix-font text-6xl text-[#d91b88] mb-10 tracking-tighter">ASSO-FLIX</div>
+            <div
+                class="flex flex-wrap justify-center gap-12 text-gray-500 text-sm font-bold mb-16 uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Asso Au Secours</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=asso.ausecours@gmail.com&su=Rejoindre%20la%20lutte%20ASSO%20SOLIDAIRE"
+                target="_blank"
+                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Contact Asso</a>
+                <a href="#"
+                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">INFOS PSE</a>
+            </div>
+            <p class="text-gray-700 text-xs uppercase tracking-[0.3em] font-light">
+                © 2026 ASSO-Solidaires Production. Une création originale pour le SCCF.<br>
+                <span class="mt-2 block">Pas de droits réservés, tout pour la lutte.</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
