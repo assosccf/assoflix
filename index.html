@@ -208,33 +208,33 @@
             }
         }
 
-        /* Casting grid responsive */
         .cast-grid {
             background: var(--netflix-black);
-            min-height: 100vh;
+            height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px;
+            padding: 20px;
             position: relative;
             z-index: 20;
         }
 
-        @media (min-width: 768px) {
-            .cast-grid {
-                padding: 40px;
-            }
+        .cast-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Annotation as a "Producer's Note" */
         .annotation-box {
             position: relative;
             background: rgba(255, 204, 0, 0.1);
             border-left: 4px solid var(--asso-yellow);
             padding: 1rem;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             font-style: italic;
             color: var(--asso-yellow);
             border-radius: 0 8px 8px 0;
@@ -263,7 +263,6 @@
             font-style: normal;
         }
 
-        /* Stylized Lists */
         .styled-list {
             margin: 1.2rem 0;
             list-style: none;
@@ -347,22 +346,20 @@
         </div>
         <div class="content-container">
             <div class="text-center px-4 max-w-5xl">
-
                 <h1 class="netflix-font text-5xl md:text-9xl mb-4 md:mb-8 leading-none">QUAND LA TRANSFORMATION<br><span
                         class="text-[#d91b88]">RENCONTRE UN PSE</span></h1>
                 <p
-                    class="text-lg md:text-3xl font-light mb-8 md:mb-12 text-gray-200 leading-snug max-w-4xl mx-auto italic">
+                    class="text-lg md:text-2xl font-light mb-8 md:mb-12 text-gray-200 leading-snug max-w-4xl mx-auto italic">
                     "Octobre 2025, séisme au SCCF. Le verdict tombe : un plan social et une
                     transformation de l'association !<br class="hidden md:block"><br class="hidden md:block">
-
                     La direction convoque une visio extraordinaire pour l’ensemble des
                     salarié·es de l’association. <br class="hidden md:block"><br class="hidden md:block">
-
                     Des rumeurs, des bruits de couloirs, des ragots laissent apercevoir un
                     moment inédit dans la vie de l’association."
                 </p>
-                <h2 class="netflix-font text-lg md:text-2xl tracking-[0.2em] md:tracking-[0.3em] mb-6 text-gray-400">UNE
-                    CRÉATION ORIGINALE
+                <h2
+                    class="netflix-font text-lg md:text-2xl tracking-[0.2em] md:tracking-[0.3em] mb-6 text-gray-400 uppercase">
+                    UNE CRÉATION ORIGINALE
                     ASSO-SOLIDAIRES AU SECOURS CATHOLIQUE</h2>
                 <div class="flex justify-center gap-4 md:gap-8">
                     <a href="#saison1"
@@ -376,69 +373,66 @@
 
     <!-- CASTING SECTION -->
     <section id="casting" class="cast-grid">
-        <div class="max-w-7xl w-full flex flex-col items-center">
+        <div class="cast-wrapper">
             <h3
                 class="netflix-font text-3xl md:text-5xl mb-8 md:mb-16 tracking-wider border-b border-gray-900 pb-4 md:pb-6 uppercase w-full text-center">
                 Casting Principal</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-10 w-full">
-                <div class="cast-card">
+                <div class="cast-card text-center">
                     <div
                         class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/melanie.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Mélanie Cagniart</p>
-                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH du SC</p>
+                    <p class="font-black text-xs md:text-lg uppercase leading-tight">Mélanie Cagniart</p>
+                    <p class="text-[8px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH du SC</p>
                 </div>
-                <div class="cast-card">
+                <div class="cast-card text-center">
                     <div
                         class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/isabelle.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Isabelle Lambret</p>
-                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH adjointe
-                    </p>
+                    <p class="font-black text-xs md:text-lg uppercase leading-tight">Isabelle Lambret</p>
+                    <p class="text-[8px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">DRH adjointe</p>
                 </div>
-                <div class="cast-card">
+                <div class="cast-card text-center">
                     <div
                         class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/adelaide.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Adélaïde Bertrand</p>
-                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">Déléguée
+                    <p class="font-black text-xs md:text-lg uppercase leading-tight">Adélaïde Bertrand</p>
+                    <p class="text-[8px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">Déléguée
                         générale</p>
                 </div>
-                <div class="cast-card">
+                <div class="cast-card text-center">
                     <div
                         class="aspect-[2/3] bg-gray-800 rounded-sm overflow-hidden mb-3 md:mb-6 border-2 border-transparent hover:border-[#d91b88] transition-all shadow-2xl">
                         <img src="./img/didier.png"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
-                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Didier Duriez</p>
-                    <p class="text-[10px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">Président</p>
+                    <p class="font-black text-xs md:text-lg uppercase leading-tight">Didier Duriez</p>
+                    <p class="text-[8px] md:text-xs text-[#d91b88] font-bold uppercase tracking-widest">Président</p>
                 </div>
-                <div class="cast-card">
+                <div class="cast-card text-center">
                     <div
-                        class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-3 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                        class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
                         <span class="netflix-font text-xl md:text-4xl leading-none">ÉLU·ES CSE</span>
-                        <span
-                            class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-[0.1em] md:tracking-[0.2em]">8
-                            ASSO • 6 CFDT • 1 CFTC • 1
-                            CGC</span>
+                        <span class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-widest leading-tight">8
+                            ASSO • 6 CFDT<br>1 CFTC • 1 CGC</span>
                     </div>
-                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Le CSE</p>
+                    <p class="font-black text-xs md:text-lg uppercase leading-tight">Le CSE</p>
                 </div>
-                <div class="cast-card">
+                <div class="cast-card text-center">
                     <div
-                        class="aspect-[2/3] bg-gray-800 rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-3 md:p-6 text-center shadow-2xl border border-gray-700 grayscale hover:grayscale-0 transition duration-700">
+                        class="aspect-[2/3] bg-gray-800 rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl border border-gray-700 grayscale hover:grayscale-0 transition duration-700">
                         <span class="netflix-font text-xl md:text-4xl leading-none text-[#d91b88]">LES NÉGOS</span>
                         <span
-                            class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-[0.1em] md:tracking-[0.2em] text-gray-400">Toutes
+                            class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-widest text-gray-400">Toutes
                             Organisations</span>
                     </div>
-                    <p class="font-black text-sm md:text-xl uppercase leading-tight">Négociateurs</p>
+                    <p class="font-black text-xs md:text-lg uppercase leading-tight">Négociateurs</p>
                 </div>
             </div>
         </div>
@@ -458,32 +452,27 @@
                     <h2 class="section-title">LE CHOC DES ÉCRANS NOIRS</h2>
                     <div class="text-body">
                         <p>Les salariées du SCCF se connectent au webinaire organisé par la gouvernance de
-                            l'association. À l'écran, 3 visages : <span class="highlight">Didier Duriez</span>, <span
+                            l'association. À l'écran, 3 visages, <span class="highlight">Didier Duriez</span>, <span
                                 class="highlight">Adélaïde Bertrand</span>, <span class="highlight">Mélanie
                                 Cagnart</span>.</p>
-
                         <p>Iels parlent réorganisation, transformation, agilité, sobriété pour terminer par un nombre de
-                            postes supprimés... <strong class="text-xl md:text-3xl text-[#d91b88]">130 !!</strong></p>
-
+                            postes supprimés... <strong class="text-xl md:text-4xl text-[#d91b88]">130 !!</strong></p>
                         <ul class="styled-list">
-                            <li>La prise de parole des participantes est <strong>bloquée</strong>.</li>
-                            <li>Seul le fil de discussion de la visio est ouvert : des questions et remarques en rafale.
-                            </li>
-                            <li>Des réponses ?? <strong>Très peu !</strong></li>
+                            <li>La prise de parole des participantes est <strong>bloquée</strong>, seul le fil de
+                                discussion de la visio est ouvert.</li>
+                            <li>Des questions, beaucoup de questions. Des remarques, beaucoup de remarques. Des réponses
+                                ?? <strong>Très peu !</strong></li>
+                            <li>C'est parti pour une démarche d'information consultation de 3 mois avec le
+                                <strong>CSE</strong> (comité social et économique) et de négociations avec les
+                                organisations syndicales représentatives (ASSO-Solidaire, CFDT, CFTC et CFE-CGC).</li>
                         </ul>
-
-                        <p>C'est parti pour une démarche d'information consultation de 3 mois avec le
-                            <strong>CSE</strong> et de négociations avec les organisations syndicales représentatives
-                            (ASSO-Solidaire, CFDT, CFTC et CFE-CGC).
-                        </p>
-
                         <div class="annotation-box">
-                            "Et d'un coup, plus personne à l'écran. Déconnexion des 3 protagonistes sous les regards
-                            interloqués des salarié-es."
+                            Et d'un coup, plus personne à l'écran. Déconnexion des 3 protagonistes sous les regards
+                            interloqués des salarié-es.
                         </div>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 8%"></div>
+                        <div class="progress-fill" style="width: 5%"></div>
                     </div>
                 </div>
             </div>
@@ -500,43 +489,43 @@
                     <h2 class="section-title">L'ATTAQUE DES LIVRES DE 500 PAGES</h2>
                     <div class="text-body">
                         <p>Le coup d'envoi des réunions est lancé avec le premier <strong>CSE extraordinaire</strong>.
-                            Les élu-es ont eu accès à la documentation monumentale de la démarche : 3 documents légaux
-                            qui vont rythmer leurs nuits.</p>
-
+                            Les élu-es ont eu accès à la documentation de la démarche après la visio du 9 octobre. 3
+                            documents légaux :</p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 my-6 md:my-8">
                             <div class="p-3 md:p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
                                 <p class="text-[10px] md:text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 1 (PSE)
                                 </p>
-                                <p class="text-xl md:text-2xl font-black">168 <span
+                                <p class="text-xl md:text-3xl font-black">168 <span
                                         class="text-xs font-normal">PAGES</span></p>
                             </div>
                             <div class="p-3 md:p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
                                 <p class="text-[10px] md:text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 2
                                     (Transformation)</p>
-                                <p class="text-xl md:text-2xl font-black">143 <span
+                                <p class="text-xl md:text-3xl font-black">143 <span
                                         class="text-xs font-normal">PAGES</span></p>
                             </div>
                             <div class="p-3 md:p-4 bg-white/5 rounded border-l-2 border-[#d91b88]">
                                 <p class="text-[10px] md:text-xs uppercase font-bold text-[#d91b88] mb-1">Livre 4
                                     (Santé)</p>
-                                <p class="text-xl md:text-2xl font-black">131 <span
+                                <p class="text-xl md:text-3xl font-black">131 <span
                                         class="text-xs font-normal">PAGES</span></p>
                             </div>
                         </div>
-
-                        <p>Voilà les élu-es occupé-es pour un bon moment ! Elles arrivent en CSE avec de nombreuses
-                            questions. <strong>Adélaïde Bertrand</strong> reprend
-                            les éléments du webinaire pour détailler les raisons économiques du PSE.</p>
-
-                        <p class="italic">S'en suive beaucoup de questions des élues qui ne semblent pas décidées à
-                            laisser couler la présentation sans <strong>précisions</strong>.</p>
-
+                        <p>Voilà les élu-es occupé-es pour un bon moment ! Ces dernières arrivent en CSE avec de
+                            nombreuses questions sur la manière dont va se dérouler cette période et les étapes de
+                            l'information-consultation.</p>
+                        <p><strong>Adélaïde Bertrand</strong> reprend les éléments présentés lors de la première visio
+                            pour détailler les raisons de la mise en place de ce PSE et les différentes étapes à venir.
+                            S'en suive beaucoup de questions des élues qui ne semblent pas décidées à laisser couler la
+                            présentation sans précision et détails utiles à la bonne compréhension des orientations de
+                            la direction et du processus en cours.</p>
                         <p
                             class="text-gray-500 text-[10px] md:text-xs mt-6 md:mt-10 uppercase tracking-widest border-t border-white/10 pt-4">
-                            Consulter le PV complet sur <a href="#" class="text-[#d91b88] underline">ISIDOR</a></p>
+                            Détails de l'épisode dans le PV du CSE sur <a href="#"
+                                class="text-[#d91b88] underline italic">ISIDOR</a></p>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 18%"></div>
+                        <div class="progress-fill" style="width: 15%"></div>
                     </div>
                 </div>
             </div>
@@ -552,30 +541,32 @@
                     <span class="episode-meta">S01 • E02 • Semaine 43</span>
                     <h2 class="section-title">LE SPRINT CONTRE-NATURE</h2>
                     <div class="text-body">
-                        <p>Ça va vite, très vite : suspense, rebondissements, stress. Le 22 octobre 2025, lancement des
-                            <strong>négociations</strong> en parallèle du CSE. Le défi est absurde :
-                        </p>
-
+                        <p>Et oui, on est à un épisode par semaine pour cette série. Ça va vite, très vite avec
+                            suspense, rebondissements, stress, question. Le 22 octobre 2025, c'est le lancement des
+                            <strong>négociations</strong>, en parallèle du CSE, avec les organisations.</p>
+                        <p>L'objectif ? Travailler sur le <strong>Livre 1</strong> de la procédure, donc le PSE, pendant
+                            que le CSE étudie le <strong>Livre 2</strong>, soit le projet de transformation.</p>
                         <p class="text-xl md:text-4xl font-black text-center my-6 md:my-10 leading-none">
                             <span class="text-[#d91b88]">3 MOIS</span> POUR NÉGOCIER<br>
-                            <span class="text-gray-500 text-xs md:text-lg font-bold">UN PROJET PRÉPARÉ DEPUIS 2
-                                ANS</span>
+                            <span class="text-gray-500 text-xs md:text-lg font-bold uppercase">UN PROJET PRÉPARÉ DEPUIS
+                                2 ANS</span>
                         </p>
-
-                        <p>Travailler sur le <strong>Livre 1</strong> pendant que le CSE étudie le <strong>Livre
-                                2</strong>. Premier combat : le calendrier. Comment demander une appropriation sérieuse
-                            dans ces délais ?</p>
-
+                        <ul class="styled-list">
+                            <li>Premier élément de négociation mené par les négociateur-ices : le
+                                <strong>calendrier</strong>.</li>
+                            <li>Comment demander une appropriation, une discussion et une négociation de tous les
+                                éléments du projet en seulement 3 mois ?</li>
+                        </ul>
                         <div class="annotation-box">
                             "C'est un fait, pas une blague !"
                         </div>
-
-                        <p>La direction estime qu'un PV n'est pas utile : elle
-                            utilise un <strong>PowerPoint</strong> (et oui ça existe encore) pour présenter les ordres
-                            du jour et un relevé de décisions rédigé de manière <strong>unilatérale</strong>.</p>
+                        <p>On vous proposerait bien un épisode détaillé mais pas de PV, pas de compte-rendu précis et
+                            diffusable. La direction estime que ce n'est pas utile, elle utilise donc un
+                            <strong>powerpoint (et oui ça existe encore)</strong> pour présenter les ordres du jour et
+                            un relevé de décisions rédigé unilatéralement.</p>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 30%"></div>
+                        <div class="progress-fill" style="width: 25%"></div>
                     </div>
                 </div>
             </div>
@@ -592,25 +583,190 @@
                     <h2 class="section-title">L'INLASSABLE DISQUE RAYÉ</h2>
                     <div class="text-body">
                         <p>Nouvelle rencontre des négociateur-ices. Les premières sessions étaient dédiées à la
-                            <strong>forme</strong> : calendrier, moyens, accès aux documents. Une réponse récurrente de
-                            la direction résonne dans la salle :
-                        </p>
-
+                            <strong>forme</strong> des échanges : calendrier, objet de négociation, demandes des élues
+                            sur l'organisation et éléments de compréhension.</p>
                         <p
                             class="text-xl md:text-5xl font-black text-[#d91b88] italic text-center my-8 md:my-12 tracking-tighter">
                             "ON ENTEND. ON PREND BONNE NOTE ET ON REVIENT VERS VOUS."
                         </p>
-
                         <div class="annotation-box">
-                            Et oui ça peut durer longtemps !
+                            "Et oui ça peut durer longtemps !"
                         </div>
-
-                        <p>On a quand même réussi à aborder un sujet du Livre 1 sur les <strong>périmètres
-                                géographiques</strong>. Les questions se multiplient devant des
-                            explications parfois floues.</p>
+                        <p>Cette deuxième rencontre a été dédiée aux réponses de la direction sur les moyens dédiés à la
+                            négociation (nombre de négociateur-ices, heures de travail déléguées, calendrier, accès
+                            total aux documents). On a quand même réussi à aborder un sujet du Livre 1 sur les
+                            <strong>périmètres géographiques</strong> (explications et questions de compréhension).</p>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 42%"></div>
+                        <div class="progress-fill" style="width: 35%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 4 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E04 • Semaine 45</span>
+                    <h2 class="section-title">S.O.S. DÉTRESSE SALARIALE</h2>
+                    <div class="text-body">
+                        <p>Retour en <strong>CSE extraordinaire</strong>. La direction a annoncé la mise à jour des
+                            documents (Livres 1, 2 et 4) et s’est engagée à améliorer la lisibilité du calendrier, tout
+                            en reconnaissant un besoin de communication plus claire et plus directe auprès des
+                            salarié-es.</p>
+                        <p>Les élues ont exprimé de fortes inquiétudes sur le manque de visibilité, l'incertitude
+                            prolongée et les risques de ciblage implicite. La durée de l'info-consultation fait débat,
+                            entre volonté d'aller vite et nécessité de sécuriser les salarié-es.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                            <div class="p-4 bg-red-900/20 rounded border-l-4 border-red-600">
+                                <p class="text-xs font-bold uppercase text-red-400">Vote CSE</p>
+                                <p class="text-lg font-black uppercase">Contre l'ouverture anticipée du PIC et du
+                                    reclassement</p>
+                            </div>
+                            <div class="p-4 bg-green-900/20 rounded border-l-4 border-green-600">
+                                <p class="text-xs font-bold uppercase text-green-400">Vote CSE</p>
+                                <p class="text-lg font-black uppercase">Pour la mise en place d'un soutien psychologique
+                                </p>
+                            </div>
+                        </div>
+                        <p>La direction a justifié la transformation par une dégradation durable du contexte économique
+                            (baisse des dons, des subventions et hausse des charges). Les élues ont demandé davantage de
+                            chiffrages, notamment sur le coût et les effets financiers du PSE, ainsi que l'étude
+                            d'alternatives (emprunt, immobilier, organisation différente).</p>
+                        <p>Enfin, la réorganisation <strong>OAF / SAF</strong> soulève de nombreuses interrogations sur
+                            la charge de travail, la proximité avec les équipes locales, l'employabilité et la cohérence
+                            du calendrier avec le PSE.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 5 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E05 • Semaine 46</span>
+                    <h2 class="section-title">LE PRIX DU DÉPART : 3,3 MILLIONS</h2>
+                    <div class="text-body">
+                        <p>En négociations. La direction rappelle que le nombre de suppressions de postes <strong>n'est
+                                pas négociable</strong>, même s'il peut encore évoluer unilatéralement. Les discussions
+                            portent sur le périmètre géographique, le calendrier d’info-consultation et les mesures
+                            d'accompagnement du PSE.</p>
+                        <p>Un accord spécifique est proposé pour clarifier le périmètre régional des salarié-es
+                            <strong>OAF</strong>, tandis que les autres catégories restent régies par le Livre 1. Les
+                            échanges sur la communication syndicale visent à élargir temporairement les possibilités de
+                            diffusion. Le calendrier d’info-consultation serait légèrement étendu.</p>
+                        <div class="annotation-box">
+                            Les mesures d'accompagnement sont chiffrées sur une hypothèse médiane de 100 départs pour un
+                            coût estimé à <span class="text-white font-black">3,3 M€</span>, mais jugées insuffisantes
+                            par les syndicats.
+                        </div>
+                        <p>De nombreuses demandes portent sur l'augmentation des indemnités, l'élargissement des
+                            critères d'accès, la mobilité, la formation et les <strong>départs volontaires</strong> pour
+                            limiter les départs contraints. Enfin, la création de catégories professionnelles et les
+                            critères d’ordre visent à protéger les salarié-es les plus vulnérables.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 55%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 6 : En rédaction -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block text-center border-dashed border-asso-yellow">
+                    <span class="episode-meta">S01 • E06 • Semaine 47</span>
+                    <h2 class="section-title text-[#ffcc00]">À SUIVRE...</h2>
+                    <div class="text-body py-10">
+                        <p class="text-2xl font-light italic">"Cet épisode est actuellement sous les projecteurs de nos
+                            scénaristes..."</p>
+                        <p class="mt-4 text-gray-400">Les négociations de la semaine 47 sont en cours de décryptage par
+                            l'équipe ASSO-Solidaires. Les rebondissements arrivent prochainement.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%; opacity: 0.5;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 7 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E07 • Semaine 48</span>
+                    <h2 class="section-title">LE GRAND CHAMBARDEMENT DES PÔLES</h2>
+                    <div class="text-body">
+                        <p>CSE extraordinaire - Début des présentations des projets de réorganisation de chaque
+                            direction. La présentation du Pôle Appui aux Acteurs Clés (<strong>PAAC</strong>) prévoit
+                            une organisation en directions thématiques, avec un rôle central des <strong>CIRA</strong>.
+                        </p>
+                        <p>L’objectif est de mieux réguler les besoins remontant des délégations. Deux axes majeurs : la
+                            pédagogie d’animation et le développement d’un réseau apprenant. Cette réorganisation
+                            entraîne des suppressions et modifications de postes, notamment au sein de la
+                            <strong>DEA</strong>, suscitant de fortes inquiétudes sur la perte de compétences et la
+                            surcharge.</p>
+                        <ul class="styled-list">
+                            <li><strong>DRH :</strong> Réorganisation visant à renforcer la centralisation. Les
+                                syndicats interrogent la charge de travail et la sécurisation des fonctions sensibles
+                                comme la paie.</li>
+                            <li><strong>DCG :</strong> Externalisation partielle du service donateurs (SAD) pour plus de
+                                flexibilité. Les syndicats questionnent l’impact sur la qualité. L’IA et la
+                                digitalisation sont envisagées.</li>
+                        </ul>
+                        <p>La <strong>CSSCT extraordinaire</strong> a mis en lumière une forte charge mentale
+                            généralisée chez les salarié-es et les élu-es.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épisode 8 -->
+        <section class="episode-section">
+            <div class="parallax-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&q=80&w=2070');">
+            </div>
+            <div class="content-container">
+                <div class="content-block">
+                    <span class="episode-meta">S01 • E08 • Semaine 49</span>
+                    <h2 class="section-title">LES CASES DE L'INIQUITÉ</h2>
+                    <div class="text-body">
+                        <p>La réunion traite de la définition et révision des <strong>catégories
+                                professionnelles</strong>. Le nombre élevé de catégories et la distinction entre postes
+                            compliquent l'équité et la lisibilité selon les OS.</p>
+                        <p>Des points critiques concernent les métiers d'animation, juristes, comptables, responsables
+                            et postes isolés, avec question sur la formation d'adaptation.</p>
+                        <p class="text-2xl font-black text-[#d91b88] uppercase italic text-center my-8">
+                            "L'usage des entretiens annuels comme critère d'ordre est jugé inéquitable par les
+                            syndicats."
+                        </p>
+                        <p>L’objectif affiché par les élus est d’assurer <strong>équité, objectivité et
+                                protection</strong> des salariés, avec des propositions concrètes pour ajuster
+                            catégories et critères de départ.</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 82%"></div>
                     </div>
                 </div>
             </div>
@@ -626,29 +782,26 @@
                     <span class="episode-meta">S01 • E09 • Semaine 50</span>
                     <h2 class="section-title">LE PARADOXE OASYS</h2>
                     <div class="text-body">
-                        <p>Négociations et CSE extraordinaire la même semaine : le suspense est total. On nous présente
-                            l'<strong>IAPR</strong>, un service de psychologues accessible 24h/24.</p>
-
-                        <p>Le rebondissement ? Les élu·es apprennent que cette structure fait partie du groupe... <span
-                                class="highlight">OASYS</span> ! </p>
-                        <p>Oui, celui-là même qui a <strong>préparé la transformation et
-                                le PSE</strong> avec notre direction !</p>
-
+                        <p>Nouveauté dans la série : négociations et CSE extraordinaire la même semaine !
+                            Rebondissements ! Lors du CSE, les élues ont une présentation de l’<strong>IAPR</strong> (un
+                            bien bel acronyme).</p>
+                        <p>Il s’agit d’un service de psychologues pour accompagner les salarié-es pendant le PSE avec un
+                            numéro vert accessible 24h/24. Tout à coup, iels apprennent que la structure choisie fait
+                            partie du groupe <strong>Oasys</strong> ! Et oui celui-là même qui a préparé la
+                            transformation et le PSE avec notre direction !</p>
                         <div class="annotation-box">
-                            "Rassurez-vous, c'est le même groupe mais rien à voir évidemment, l'IAPR est indépendant
-                            bien sûr..." (ton sarcastique).
+                            "Rassurez-vous, c’est le même groupe mais rien à voir évidemment, l’IAPR est indépendant
+                            bien sûr…" (ton sarcastique).
                         </div>
-
-                        <p>Vient ensuite la séquence sur la <strong>coordination des régions</strong> présentée par
-                            <span class="highlight text-white">Jean-Philippe Rouxel</span> : suppression des postes de
-                            coordinateur-trices d'animation. Inquiétudes massives sur la surcharge de travail.
-                        </p>
-
+                        <p>Puis, Jean-Philippe Rouxel présente la réorganisation de la coordination des régions :
+                            suppression des postes de coordinateur-trices d’animation et recentrage sur les métiers de
+                            déléguée, animateur-trice et assistant-e. De nombreuses inquiétudes sur la surcharge de
+                            travail et la fragilisation du réseau bénévole.</p>
                         <p class="italic text-[#d91b88] font-bold mt-4 md:mt-6">"Paroles, paroles, paroles, toujours des
                             paroles..." (Réf. Dalida)</p>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 88%"></div>
+                        <div class="progress-fill" style="width: 90%"></div>
                     </div>
                 </div>
             </div>
@@ -664,21 +817,17 @@
                     <span class="episode-meta">S01 • E10 • Semaine 51</span>
                     <h2 class="section-title">LA BOUSSOLE EN BLABLA</h2>
                     <div class="text-body">
-                        <p>On termine l'année par un nouvel acronyme : le <strong>PIC</strong> (Point Information
-                            Conseil). Ce dispositif sous-traité est géré par <span class="highlight">Randstad /
-                                RiseSmart</span>.</p>
-
-                        <p>On nous présente un cabinet "d'artisans" dont :</p>
-                        <ul class="styled-list">
-                            <li>L'humain représente la <strong>boussole</strong>.</li>
-                            <li>L'adaptation se fait <strong>sur mesure</strong>.</li>
-                            <li>La culture est centrée sur la <strong>prévention des risques</strong>.</li>
-                        </ul>
-
+                        <p>Petite semaine avec "seulement" un CSE extraordinaire... On commence par un nouvel acronyme,
+                            le <strong>PIC</strong> (Point information conseil). Le PIC vise à informer et conseiller
+                            sur le dispositif du PSE, sur le CSP, sur le contenu du livre 1 et les mesures
+                            d'accompagnement et c’est un dispositif sous-traité.</p>
+                        <p>L'entreprise choisie est <strong>Randstad</strong>. RiseSmart en représente le cabinet de
+                            conseil RH. Il est spécialisé dans la transformation organisationnelle et la gestion des
+                            parcours professionnels. On nous présente un "cabinet d’artisans", dont l’humain représente
+                            la boussole, et qui s’adapte aux individus, grâce à un travail sur mesure.</p>
                         <div class="annotation-box">
-                            "Résumé des 9 lignes précédentes : BLABLA COMMERCIAL !"
+                            Résumé des 9 lignes précédentes : BLABLA COMMERCIAL !
                         </div>
-
                         <p
                             class="mt-10 md:mt-16 text-center text-[#ffcc00] font-black tracking-[0.2em] md:tracking-[0.4em] text-xl md:text-3xl netflix-font uppercase bg-black/40 py-3 md:py-4 border-y border-[#ffcc00]/20">
                             Suite de la saison dans quelques semaines !
@@ -699,14 +848,15 @@
             <div class="netflix-font text-4xl md:text-6xl text-[#d91b88] mb-8 md:mb-10 tracking-tighter">ASSO-FLIX</div>
             <div
                 class="flex flex-wrap justify-center gap-6 md:gap-12 text-gray-500 text-[10px] md:text-sm font-bold mb-12 md:mb-16 uppercase tracking-widest">
-                <a href="#" class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Asso
-                    Au Secours</a>
+                <a href="#"
+                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Actualités
+                    Syndicales</a>
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=asso.ausecours@gmail.com&su=Rejoindre%20la%20lutte%20ASSO%20SOLIDAIRE"
                     target="_blank"
-                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Contact
-                    Asso</a>
-                <a href="#" class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">INFOS
-                    PSE</a>
+                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Contact</a>
+                <a href="#"
+                    class="hover:text-white transition decoration-[#d91b88] underline underline-offset-8">Dossiers
+                    Isidor</a>
             </div>
             <p class="text-gray-700 text-[8px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] font-light">
                 © 2026 ASSO-Solidaires Production. Une création originale pour le SCCF.<br>
