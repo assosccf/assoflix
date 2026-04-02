@@ -31,6 +31,45 @@
             font-family: 'Bebas Neue', cursive;
         }
 
+        /* Modal Overlay for Intro */
+        #intro-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        #intro-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .skip-btn {
+            margin-top: 20px;
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 30px;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .skip-btn:hover {
+            background: white;
+            color: black;
+        }
+
         /* Sections fluides adaptées au contenu pour éviter le scroll interne */
         .episode-section {
             position: relative;
@@ -167,6 +206,32 @@
                 margin-bottom: 2rem;
                 letter-spacing: -2px;
             }
+        }
+
+        /* View Counter */
+        #view-counter {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 110;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 16px;
+            border-radius: 4px;
+            border-left: 3px solid var(--asso-red);
+            font-family: 'Bebas Neue', cursive;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #e50914;
+            border-radius: 50%;
+            transform: scale(1);
+            animation: pulse 1s infinite;
         }
 
         /* Casting centré plein écran */
@@ -324,6 +389,114 @@
             color: #d91b88;
         }
 
+        /* Empêcher le scroll pendant l'animation d'intro */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Splash Screen Style - Netflix Intro Effect */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s;
+        }
+
+        #splash-logo {
+            display: flex;
+            align-items: center;
+            font-size: 5rem;
+            color: var(--asso-red);
+            perspective: 1000px;
+        }
+
+        .letter-a {
+            display: inline-block;
+            animation: a-zoom 4s forwards cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        .other-letters {
+            display: inline-block;
+            white-space: nowrap;
+            animation: others-fade 4s forwards cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        @keyframes a-zoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateZ(-100px);
+                filter: blur(10px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: scale(1) translateZ(0);
+                filter: blur(0);
+            }
+
+            45% {
+                opacity: 1;
+                transform: scale(1) translateZ(0);
+            }
+
+            75% {
+                opacity: 1;
+                transform: scale(25) translateX(15%);
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(35) translateX(20%);
+                filter: blur(20px);
+            }
+        }
+
+        @keyframes others-fade {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                filter: blur(10px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            55% {
+                opacity: 0;
+                transform: scale(0.9);
+                filter: blur(5px);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
         /* Vote boxes for Episode 4 */
         .vote-box {
             padding: 1.5rem;
@@ -349,7 +522,16 @@
 </head>
 
 <body>
+    <audio id="tudum-sound" preload="auto">
+        <source src="https://www.myinstants.com/media/sounds/netflix-tou-doum.mp3" type="audio/mpeg">
+    </audio>
 
+    <!-- SPLASH SCREEN ANIMÉ (STYLE NETFLIX) -->
+    <div id="splash-screen">
+        <h1 id="splash-logo" class="netflix-font">
+            <span class="letter-a">A</span><span class="other-letters">SSO-FLIX</span>
+        </h1>
+    </div>
     <nav id="navbar" class="flex items-center justify-between">
         <div class="flex items-center gap-4 md:gap-10">
             <span class="netflix-font text-4xl md:text-6xl text-[#d91b88] tracking-tighter uppercase">ASSO-FLIX</span>
@@ -456,8 +638,9 @@
                 </div>
 
                 <div class="text-center">
-                    <div class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700"">
-                        <span class=" netflix-font text-xl md:text-2xl leading-none">LES NÉGOCIATEUR·TRICES</span>
+                    <div
+                        class="aspect-[2/3] bg-[#d91b88] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                        <span class="netflix-font text-xl md:text-2xl leading-none">LES NÉGOCIATEUR·TRICES</span>
                         <span
                             class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-widest leading-tight uppercase">4
                             membres ASSO SOLIDAIRES - 4
@@ -475,17 +658,20 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="aspect-[2/3] bg-[#085694] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700"">
+                    <div
+                        class="aspect-[2/3] bg-[#085694] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
                         <span class=" netflix-font text-xl md:text-4xl leading-none">LES SALARIÉ·ES</span>
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="aspect-[2/3] bg-[#085694] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700"">
+                    <div
+                        class="aspect-[2/3] bg-[#085694] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
                         <span class=" netflix-font text-xl md:text-4xl leading-none">LES BÉNÉVOLES</span>
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="aspect-[2/3] bg-[#085694] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700"">
+                    <div
+                        class="aspect-[2/3] bg-[#c91830] rounded-sm mb-3 md:mb-6 flex flex-col items-center justify-center p-2 md:p-6 text-center shadow-2xl grayscale hover:grayscale-0 transition duration-700">
                         <span class=" netflix-font text-xl md:text-4xl leading-none">LA DRIEETS</span>
                         <span
                             class="text-[8px] md:text-[10px] mt-2 md:mt-6 font-bold tracking-widest leading-tight uppercase">Pour
@@ -997,7 +1183,6 @@
                             suppression arbitraire de 130 postes.</p>
 
                         <div class="video-container">
-                            <!-- Remplacez ID_VIDEO_YOUTUBE par l'identifiant réel de votre vidéo -->
                             <iframe width="560" height="505"
                                 src="https://www.youtube.com/embed/bMQClmvSUmU?si=YguBYFiCW6bd22FE"
                                 title="YouTube video player" frameborder="0"
@@ -1115,18 +1300,102 @@
             </p>
         </div>
     </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    <script>
-        const navbar = document.getElementById('navbar');
+        // --- 1. LOGIQUE DE SPLASH SCREEN & SON ---
+        const splashScreen = document.getElementById('splash-screen');
+        const introSound = document.getElementById('tudum-sound');
 
+        function playIntroSound() {
+            if (introSound) {
+                // Tente de jouer le son
+                const playPromise = introSound.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        // Si l'autoplay est bloqué, on ajoute un écouteur sur le premier clic
+                        console.log("Autoplay bloqué. En attente d'interaction utilisateur pour lancer le son.");
+                        const startOnInteraction = () => {
+                            introSound.play();
+                            window.removeEventListener('click', startOnInteraction);
+                            window.removeEventListener('touchstart', startOnInteraction);
+                        };
+                        window.addEventListener('click', startOnInteraction);
+                        window.addEventListener('touchstart', startOnInteraction);
+                    });
+                }
+            }
+        }
+
+        window.addEventListener('load', () => {
+            // Tentative de lecture immédiate au chargement
+            playIntroSound();
+
+            // Retrait du splash screen après l'animation (4s)
+            setTimeout(() => {
+                if (splashScreen) {
+                    splashScreen.classList.add('hidden');
+                    document.body.classList.remove('modal-open');
+                }
+            }, 4000);
+        });
+
+        // --- 2. CONFIGURATION FIREBASE (VISITES RÉELLES) ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'asso-flix-v5';
+
+        async function runVisitCounter() {
+            try {
+                if (typeof __firebase_config === 'undefined') return;
+
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                if (!auth.currentUser) return;
+
+                const counterRef = doc(db, 'artifacts', appId, 'public', 'data', 'counters', 'global');
+                const snap = await getDoc(counterRef);
+
+                if (!snap.exists()) {
+                    await setDoc(counterRef, { count: 1 });
+                } else {
+                    await updateDoc(counterRef, { count: increment(1) });
+                }
+
+                onSnapshot(counterRef, (s) => {
+                    if (s.exists()) {
+                        const countElem = document.getElementById('visit-count');
+                        if (countElem) countElem.innerText = s.data().count.toLocaleString('fr-FR');
+                    }
+                });
+
+            } catch (err) {
+                console.warn("Compteur désactivé");
+            }
+        }
+
+        // NAVBAR SCROLL
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
+            const nav = document.getElementById('navbar');
+            if (nav) {
+                if (window.scrollY > 80) nav.classList.add('nav-scrolled');
+                else nav.classList.remove('nav-scrolled');
             }
         });
+
+        runVisitCounter();
     </script>
+
 </body>
 
 </html>
